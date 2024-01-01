@@ -5,4 +5,4 @@ metadata:
   labels:
     app: postgres
 data:
-  postgres-dbname: mydb
+  postgres-dbname: postgres

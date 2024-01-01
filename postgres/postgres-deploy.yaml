@@ -14,26 +14,26 @@ spec:
     spec:
       containers:
         - name: postgres
-          image: postgres:latest
+          image: bitnami/postgresql:latest
           imagePullPolicy: "IfNotPresent"
           env:
-            - name: POSTGRES_USER
+            - name: POSTGRESQL_USERNAME
               valueFrom:
                 secretKeyRef:
                   name: postgres-secret
                   key: postgres-root-username
-            - name: POSTGRES_PASSWORD
+            - name: POSTGRESQL_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: postgres-secret
                   key: postgres-root-password
-            - name: POSTGRES_DB
+            - name: POSTGRESQL_DATABASE
               valueFrom:
                 configMapKeyRef:
                   name: postgres-configmap
                   key: postgres-dbname
           volumeMounts:
-            - mountPath: /var/lib/postgresql/data
+            - mountPath: /bitnami/postgresql
               name: postgredb
           volumes:
             - name: postgredb
