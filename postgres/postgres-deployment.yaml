@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: postgres
+  name: postgres-deployment
 spec:
   selector:
     matchLabels:
@@ -14,8 +14,8 @@ spec:
     spec:
       containers:
         - name: postgres
-          image: bitnami/postgresql:latest
-          imagePullPolicy: "IfNotPresent"
+          image: bitnami/postgresql:16.1.0
+          imagePullPolicy: IfNotPresent
           env:
             - name: POSTGRESQL_USERNAME
               valueFrom:

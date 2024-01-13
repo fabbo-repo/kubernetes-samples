@@ -30,17 +30,3 @@ spec:
             secretKeyRef:
               name: mongodb-secret
               key: mongo-root-password
----
-apiVersion: v1
-kind: Service # Created to allow communication with mongodb
-metadata:
-  name: mongodb-service
-spec:
-  selector: # Used to indicate which pod should be used for connection
-    app: mongodb
-  # default type is ClusterIP (internal service, gives an internal IP addr)
-  ports:
-    - protocol: TCP
-      port: 27017 # Exposed service port
-      targetPort: 27017 # Pod port
- 

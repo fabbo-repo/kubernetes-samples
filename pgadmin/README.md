@@ -4,22 +4,16 @@
 kubectl apply -f pgadmin-secret.yaml
 ~~~
 
-## ConfigMap
-
-~~~
-kubectl apply -f pgadmin-configmap.yaml
-~~~
-
 ## Service
 
 ~~~
 kubectl apply -f pgadmin-service.yaml
 ~~~
 
-## StatefulSet
+## Deployment
 
 ~~~
-kubectl apply -f pgadmin-statefulset.yaml
+kubectl apply -f pgadmin-deployment.yaml
 ~~~
 
 ## Port forwarding
