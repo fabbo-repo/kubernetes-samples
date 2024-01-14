@@ -11,10 +11,12 @@ spec:
       port: 9000
       targetPort: 9000
       nodePort: 30100
+      name: minio-service-port-api
     - protocol: TCP
       port: 9001
       targetPort: 9001
       nodePort: 30101
+      name: minio-service-port-web
   selector:
     app: minio
   type: NodePort
