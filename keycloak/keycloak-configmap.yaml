@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: keycloak-configmap
+  namespace: default
+  labels:
+    app: keycloak
+data:
+  keycloak-postgres-host: db
+  keycloak-postgres-port: 5432
+  keycloak-postgres-db: keycloakdb
