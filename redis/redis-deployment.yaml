@@ -6,7 +6,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      pod: redis
+      app: redis
   replicas: 1
   template:
     metadata:
