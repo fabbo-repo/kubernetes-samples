@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: metabase-deployment
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: metabase
+  template:
+    metadata:
+      labels:
+        app: metabase
+    spec:
+      containers:
+        - name: metabase
+          image: metabase/metabase:v0.49.4
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            httpGet:
+              path: /api/health
+              port: 3000
+            initialDelaySeconds: 30
+            periodSeconds: 15
+            timeoutSeconds: 5
+            failureThreshold: 5
+          env:
+            - name: MB_DB_TYPE
+              value: postgres
+            - name: MB_DB_DBNAME
+              valueFrom:
+                secretKeyRef:
+                  name: metabase-secret
+                  key: metabase-db-dbname
+            - name: MB_DB_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: metabase-secret
+                  key: metabase-db-port
+            - name: MB_DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: metabase-secret
+                  key: metabase-db-user
+            - name: MB_DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: metabase-secret
+                  key: metabase-db-pass
+            - name: MB_DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: metabase-secret
+                  key: metabase-db-host
