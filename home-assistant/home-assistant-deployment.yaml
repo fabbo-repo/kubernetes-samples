@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: home-assistant-deployment
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: home-assistant
+  template:
+    metadata:
+      labels:
+        app: home-assistant
+    spec:
+      containers:
+        - name: home-assistant
+          image: homeassistant/home-assistant:2024.4
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: TZ
+              value: Europe/Madrid
+          volumeMounts:
+            - mountPath: "/config"
+              name: home-assistant-config
+      volumes:
+        - name: home-assistant-config
+          persistentVolumeClaim:
+            claimName: home-assistant-config-pv-claim
